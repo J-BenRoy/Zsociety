@@ -9,7 +9,7 @@ class tarif{
 	public function tarif($idp,$idc,$tn,$tf){
 		$this -> idproduit = $idp;
 		$this -> idcat = $idc;
-		$this -> $tarifN = $tn;
+		$this -> tarifN = $tn;
 		$this -> tarifF = $tf;
 	}
 	
@@ -61,6 +61,15 @@ class tarif{
 		$resa = $conn->query("UPDATE tarif SET valide=0 WHERE idproduit=$idp AND idcat=$idc");
 		$resa->setFetchMode ( PDO::FETCH_OBJ );
 	}
+    
+    public function select_tarif($conn,$idp){
+        $resa = $conn->query("SELECT * FROM tarif,categorie 
+                              WHERE tarif.idcat = categorie.idcat
+                              AND tarif.valide='1'
+                              AND tarif.idproduits= '$idp'");
+		$resa->setFetchMode ( PDO::FETCH_OBJ );
+        return $resa;
+    }
 }
 
 
