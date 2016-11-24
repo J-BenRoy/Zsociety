@@ -51,9 +51,8 @@ class tarif{
 	}
 	
 	public function maj_tarif($idp,$idc,$tf,$tn,$conn){
-		$this -> set_tarifF($tf);
-		$this -> set_tarifN($tn);
-		$SQL="UPDATE tarif SET tarifN=$libc WHERE idcat=$idc AND idproduit=$idp";
+		
+		$SQL="UPDATE tarif SET tarifN=$tn,tarifF=$tf WHERE idcat=$idc AND idproduits=$idp";
 		$resultat = $conn -> query ($SQL);
 	}
 	

@@ -29,10 +29,15 @@ class categorie {
 		return $resa;
 	}
 	public function maj_categorie($idc,$libc,$conn) {
-		$SQL="UPDATE categorie SET libcat='$libc' WHERE idcat= '$idc'";
-        
+		$SQL="UPDATE categorie SET libcat='$libc' WHERE idcat= $idc";
+		
 		$resultat = $conn -> query ($SQL);
         $this->libcat = $libc;
+	}
+	
+	public function sup_categorie($idc,$conn) {
+		$SQL="UPDATE categorie SET valide=0 WHERE idcat= '$idc'";
+		$resultat = $conn -> query ($SQL);
 	}
 }
 
