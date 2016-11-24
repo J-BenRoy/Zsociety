@@ -1,7 +1,7 @@
 <?php
 include 'include/bdd.inc.php';
-include 'class_tarif.inc.php';
-include 'class_produit.inc.php';
+include 'include/class/class_tarif.inc.php';
+include 'include/class/class_produit.inc.php';
 $letarif = new produits('','','');
 ?>
 <html>

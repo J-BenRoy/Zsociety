@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <?php
 include 'include/bdd.inc.php';
-include 'include/class_cat.inc.php';
+include 'include/class/class_cat.inc.php';
 $lacat = new categorie('','','');
 ?>
 <html>
