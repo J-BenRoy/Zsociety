@@ -24,11 +24,18 @@
              $this -> libtyprepas = $libtypre;
          }
         
-        public function($idtypre, $libtyrepas, $conn)
+        public function selection_typerepas($idtypre, $libtyrepas, $conn)
         {
             $SQL = "SELECT * FROM typerepas WHERE idtyperepas = '$idtypre'";
             $SQL->setFetchMode ( PDO::FETCH_OBJ );
             return $SQL;
+        }
+        public function afficher_repas($conn)
+        {
+        	$SQL = "SELECT * FROM typerepas WHERE valide = 1";
+        	$resa = $conn -> query($SQL);
+        	$resa->setFetchMode ( PDO::FETCH_OBJ );
+        	return $resa;
         }
     }
 ?>
