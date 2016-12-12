@@ -27,28 +27,30 @@ class produits{
 		$this -> libproduits = $libp;
 	}
 	
-	public function ajouter_tarif($tf,$tn,$conn){
-		$this -> tarifF($tf);
-		$this -> tarifN($tn);
-		$SQL = "INSERT INTO `tarif`(`idproduits`, `idcat`, `tarifN`, `tarifF`, `valide`) VALUES (NULL,NULL,'$tf','$tn',1)";
+    public function ajouter_produit($idpro,$libpro,$conn){
+		$this -> idproduits = $idpro;
+		$this -> libproduits = $libpro;
+		$SQL = "INSERT INTO `produits`(`idproduits`, `libproduits`, `valide`) VALUES ('$idpro','$libpro',1)";
 		$resultat = $conn -> query($SQL);
 	}
+    
 	
 	public function affiche_produit($conn){
-		$resa = $conn->query ( "SELECT * FROM produits WHERE valide=1" );
+		$resa = $conn->query ( "SELECT * FROM produits WHERE valide=1 ORDER BY idproduits" );
 		$resa->setFetchMode ( PDO::FETCH_OBJ );
 		return $resa;
 	}
 	
-	public function maj_tarif($idp,$idc,$tf,$tn,$conn){
-		$this -> set_tarifF($tf);
-		$this -> set_tarifN($tn);
-		$SQL="UPDATE tarif SET tarifN=$libc WHERE idcat=$idc AND idproduit=$idp";
-		$resultat = $conn -> query ($SQL);
-	}
 	
-	public function update_valide($idp,$idcat,$conn){
-		$resa = $conn->query("UPDATE tarif SET valide=0 WHERE idproduit=$idp AND idcat=$idc");
-		$resa->setFetchMode ( PDO::FETCH_OBJ );
+	public function update_valide($idp,$conn){
+		$resa = $conn->query("UPDATE produits SET valide='0' WHERE idproduits='$idp'");
+        $this -> get_valide();
+	}
+    
+    public function maj_produit($idp,$libp,$conn) {
+		$SQL="UPDATE produits SET libproduits='$libp' WHERE idproduits= '$idp'";
+        
+		$resultat = $conn -> query ($SQL);
+        $this->libproduits = $libp;
 	}
 }
